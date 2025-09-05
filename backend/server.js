@@ -3,32 +3,26 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./db.js";
 
+import adminAuth from "./adminAuth.js";
+import { getLeaderboard } from './controllers/playerController.js';
+import { createPlayer } from './controllers/playerController.js';
+import apiRouter from './routes/api.js';
+import {getPlayers} from './controllers/playerController.js';
 
 dotenv.config();
 
 const app = express();
 
-connectDB();
-//middleware    
-function adminAuth(req,res,next){
-    const adminPass = process.env.ADMIN_SECRET;
-    if(!adminPass) return res.status(500).json({ message : "this the wrong number lil bro"});
-
-    const provided = req.header('x-admin-password') || req.body?.adminSecret || req.query?.adminSecret;
-    if(provided !== adminPass) 
-        return res.status(403).json({ message : "Access denied"
-    });
-    next();
-}
-
-
+//middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req,res) => {
-    res.send("API is running...");
-});
+app.post('/players', adminAuth, createPlayer);
+app.get('/', getLeaderboard);
+app.get('/players', getPlayers);
+// mount API router
+app.use('/api', apiRouter);
 app.get('/admin', adminAuth, (req,res) => {
     res.json({ok : true, msg: 'admin access granted'})
 });
