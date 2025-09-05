@@ -33,3 +33,4 @@ connectDB().then(() => {
         console.log(`server is listening port ${PORT}`)
     })
 });
+//finish with backend and put all player stats and vods in the database
