@@ -1,21 +1,25 @@
 import React from 'react'
 import logo from '../asset/logo.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl"><img src={logo} alt ="JMFC Logo" className="h-12 w-auto" /></a>
+    <a className="block hover:opacity-75 transition-opacity"><img src={logo} alt ="JMFC Logo" className="h-14 w-auto ml-20" /></a>
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Link</a></li>
+      <li><a>Players</a></li>
+      <li><a>Vods</a></li>
+      <li><a>Shops</a></li>
+      <li><a>Admin</a></li>
       <li>
         <details>
-          <summary>Parent</summary>
+          <summary>Community</summary>
           <ul className="bg-base-100 rounded-t-none p-2">
-            <li><a>Link 1</a></li>
-            <li><a>Link 2</a></li>
+            <li><Link to="/discord">Discord</Link></li>
+            <li><Link to="/creekside-park">Creekside Park</Link></li>
           </ul>
         </details>
       </li>
