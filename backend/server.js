@@ -17,10 +17,14 @@ const app = express();
 const __dirname = path.resolve();
 
 //middleware
-app.use(cors({
-  origin: 'http://localhost:5173', // Updated to port 5173
-  credentials: true // Allow cookies to be sent
-}));
+if(process.env.NODE_ENV !== 'production') {
+    app.use(
+        cors({
+            origin: 'http://localhost:5173',
+            credentials: true,
+        })
+    );
+}
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,11 +38,13 @@ app.get('/admin', adminAuth, (req,res) => {
     res.json({ok : true, msg: 'admin access granted'})
 });
 
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
-});
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
+    });
+}
 
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
