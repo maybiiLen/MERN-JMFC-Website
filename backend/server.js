@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import connectDB from "./db.js";
 
 import adminAuth from "./adminAuth.js";
@@ -14,7 +15,11 @@ dotenv.config();
 const app = express();
 
 //middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Updated to port 5173
+  credentials: true // Allow cookies to be sent
+}));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

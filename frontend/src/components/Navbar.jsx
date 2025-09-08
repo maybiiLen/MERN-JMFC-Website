@@ -16,7 +16,7 @@ const Navbar = () => {
       <li><Link to="/players">Players</Link></li>
       <li><Link className="block hover:opacity-75 transition-opacity" to="/vods">Vods</Link></li>
       <li><Link to="/shops">Shops</Link></li>
-      <li><Link to="/admin">Admin</Link></li>
+      <li><Link to="/admin-login">Admin</Link></li>
       <li>
         <details>
           <summary>Community</summary>

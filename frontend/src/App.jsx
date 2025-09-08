@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
-
 import { HomePage } from './Pages/HomePage.jsx'
-import { admin } from './pages/admin.jsx'
 import { Player } from './pages/Players.jsx'
 import { Vods } from './pages/Vods.jsx' 
 import { Shops } from './pages/Shops.jsx'
 import { PlayerDetail } from './pages/PlayerDetail.jsx'
+import AdminLogin from './pages/AdminLogin.jsx'
+import AdminDashboard from './pages/AdminDashboard.jsx'
 import Navbar from './components/Navbar.jsx'
 import backgroundImage from './asset/background.jpg';
 
@@ -32,14 +32,15 @@ export const App = () => {
 
       <Navbar />
       
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/admin' element={<admin />} />
-        <Route path='/players' element={<Player />} />
-        <Route path='/vods' element={<Vods />} />
-        <Route path='/shops' element={<Shops />} />
-        <Route path='/player/:id' element={<PlayerDetail />} />
-      </Routes>
+              <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/players" element={<Player />} />
+          <Route path="/vods" element={<Vods />} />
+          <Route path="/shops" element={<Shops />} />
+          <Route path="/player/:playerId" element={<PlayerDetail />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        </Routes>
     </div>
   )
 }

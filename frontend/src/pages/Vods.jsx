@@ -123,10 +123,14 @@ export const Vods = () => {
                     {video.title || 'Untitled Video'}
                   </h3>
                   
-                  {/*Video date */}
-                  {video.createdAt && (
+                  {/* Video date */}
+                  {video.date && (
                     <p className="text-xs text-gray-400 mt-1">
-                      {new Date(video.createdAt).toLocaleDateString()}
+                      {new Date(video.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
                     </p>
                   )}
                 </a>
