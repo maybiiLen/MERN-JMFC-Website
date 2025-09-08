@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { HomePage } from './pages/HomePage.jsx'
+import { HomePage } from './Pages/HomePage.jsx'
 import { admin } from './pages/admin.jsx'
 import { Player } from './pages/Players.jsx'
 import { Vods } from './pages/Vods.jsx' 
@@ -15,6 +15,7 @@ export const App = () => {
       <div 
         className="absolute inset-0 -z-10 h-full w-full bg-slate-950"
         style={{
+          height: 'calc(100vh + 300px)',
           backgroundImage: `
             linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
             linear-gradient(to right, #4f4f4f2e 1px, transparent 1px),
