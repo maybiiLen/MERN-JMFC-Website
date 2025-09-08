@@ -29,10 +29,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// API routes (must come before static file serving)
 app.post('/players', adminAuth, createPlayer);
-app.get('/', getLeaderboard);
+app.get('/api/leaderboard', getLeaderboard);
 app.get('/players', getPlayers);
-// mount API router
 app.use('/api', apiRouter);
 app.get('/admin', adminAuth, (req,res) => {
     res.json({ok : true, msg: 'admin access granted'})
