@@ -11,7 +11,7 @@ export const Vods = () => {
     const fetchVods = async () => {
       try {
         // Call your backend API endpoint for videos
-        const response = await fetch('http://localhost:5000/api/vods');
+        const response = await fetch('/api/vods');
         if (!response.ok) {
           throw new Error('Failed to fetch videos');
         }

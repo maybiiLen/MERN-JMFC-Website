@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/admin/players', {
+      const response = await fetch('/api/admin/players', {
         credentials: 'include', // Include cookies for auth
       });
 
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     if (!confirm('Are you sure you want to delete this player?')) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/players/${playerId}`, {
+      const response = await fetch(`/api/admin/players/${playerId}`, {
         method: 'DELETE',
         credentials: 'include',
       });
@@ -77,7 +77,7 @@ const AdminDashboard = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/admin/players', {
+      const response = await fetch('/api/admin/players', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const AdminDashboard = () => {
   const handleUpdatePlayer = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/players/${editingPlayer._id}`, {
+      const response = await fetch(`/api/admin/players/${editingPlayer._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ export const Player = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/players/full');
+      const response = await fetch('/api/players/full');
       if (response.ok) {
         const data = await response.json();
         setPlayers(data);
