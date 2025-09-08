@@ -15,6 +15,15 @@ const router = express.Router();
 
 // players
 router.get('/players', getPlayers);
+router.get('/players/full', async (req, res) => {
+  try {
+    const players = await Player.find().lean();
+    res.json(players);
+  } catch (err) {
+    console.error('getFullPlayers error', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 router.get('/players/:id', getPlayer);
 router.post('/players', adminAuth, createPlayer);
 router.put('/players/:id', adminAuth, updatePlayer);

@@ -3,7 +3,6 @@ import { HomePage } from './Pages/HomePage.jsx'
 import { Player } from './pages/Players.jsx'
 import { Vods } from './pages/Vods.jsx' 
 import { Shops } from './pages/Shops.jsx'
-import { PlayerDetail } from './pages/PlayerDetail.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import Navbar from './components/Navbar.jsx'
@@ -37,7 +36,6 @@ export const App = () => {
           <Route path="/players" element={<Player />} />
           <Route path="/vods" element={<Vods />} />
           <Route path="/shops" element={<Shops />} />
-          <Route path="/player/:playerId" element={<PlayerDetail />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
