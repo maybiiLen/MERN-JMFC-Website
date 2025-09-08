@@ -1,0 +1,13 @@
+{
+  "name": "mern-jmfc-website",
+  "version": "1.0.0",
+  "description": "A MERN Stack parody sports club website for tracking our Soccer game. JMFC (Jungle Monkey Football Club) is not a real team, but this project is a full-stack demo that blends leaderboards, player stats, fake sponsors, and highlight videos into one interactive club hub.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./db.js";
+import path from "path";
 
 import adminAuth from "./adminAuth.js";
 import { getLeaderboard } from './controllers/playerController.js';
@@ -13,6 +14,7 @@ import {getPlayers} from './controllers/playerController.js';
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve();
 
 //middleware
 app.use(cors({
@@ -30,6 +32,12 @@ app.get('/players', getPlayers);
 app.use('/api', apiRouter);
 app.get('/admin', adminAuth, (req,res) => {
     res.json({ok : true, msg: 'admin access granted'})
+});
+
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
