@@ -3,20 +3,19 @@ import Leaderboard from '../components/Leaderboard'
 import abidas from '../asset/abidas.png'
 
 export const HomePage = () => {
-  // Sample video data - replace with actual YouTube video IDs and titles
   const latestVideos = [
     {
-      id: 'aRtY35JQb-4', // Replace with actual YouTube video ID
+      id: 'aRtY35JQb-4', // first vide
       title: 'Barcelona vs Real Madrid Highlights',
       thumbnail: 'https://img.youtube.com/vi/aRtY35JQb-4/maxresdefault.jpg'
     },
     {
-      id: 'n3RKvsOcSDI', // Replace with actual YouTube video ID
+      id: 'n3RKvsOcSDI', // second video
       title: '1v1 Training Session',
       thumbnail: 'https://img.youtube.com/vi/n3RKvsOcSDI/maxresdefault.jpg'
     },
     {
-      id: 'HWAETkbb8-0', // Replace with actual YouTube video ID
+      id: 'HWAETkbb8-0', // third video
       title: 'Training Session',
       thumbnail: 'https://img.youtube.com/vi/HWAETkbb8-0/maxresdefault.jpg'
     }

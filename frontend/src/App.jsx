@@ -4,6 +4,7 @@ import { HomePage } from './Pages/HomePage.jsx'
 import { admin } from './pages/admin.jsx'
 import { Player } from './pages/Players.jsx'
 import { Vods } from './pages/Vods.jsx' 
+import { Shops } from './pages/Shops.jsx'
 import { PlayerDetail } from './pages/PlayerDetail.jsx'
 import Navbar from './components/Navbar.jsx'
 import backgroundImage from './asset/background.jpg';
@@ -36,6 +37,7 @@ export const App = () => {
         <Route path='/admin' element={<admin />} />
         <Route path='/players' element={<Player />} />
         <Route path='/vods' element={<Vods />} />
+        <Route path='/shops' element={<Shops />} />
         <Route path='/player/:id' element={<PlayerDetail />} />
       </Routes>
     </div>
