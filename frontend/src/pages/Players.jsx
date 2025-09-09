@@ -7,24 +7,38 @@ export const Player = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchPlayers();
-  }, []);
-
-  const fetchPlayers = async () => {
-    try {
-      const response = await fetch('/api/players/full');
-      if (response.ok) {
-        const data = await response.json();
-        setPlayers(data);
-      } else {
-        setError('Failed to fetch players');
+    let isMounted = true;
+    
+    const fetchPlayers = async () => {
+      try {
+        const response = await fetch('/api/players/full');
+        if (response.ok) {
+          const data = await response.json();
+          if (isMounted) {
+            setPlayers(data);
+          }
+        } else {
+          if (isMounted) {
+            setError('Failed to fetch players');
+          }
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError('Connection error');
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
-    } catch (err) {
-      setError('Connection error');
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchPlayers();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   if (loading) return (
     <div className="players-gradient-bg">

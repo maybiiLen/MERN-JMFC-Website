@@ -8,6 +8,8 @@ export const Vods = () => {
 
   // Fetch videos from backend when component mounts
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchVods = async () => {
       try {
         // Call your backend API endpoint for videos
@@ -17,16 +19,26 @@ export const Vods = () => {
         }
         const data = await response.json();
         console.log('Fetched videos:', data); // Debug log
-        setVideos(data);
+        if (isMounted) {
+          setVideos(data);
+        }
       } catch (err) {
-        setError(err.message);
-        console.error('Error fetching videos:', err);
+        if (isMounted) {
+          setError(err.message);
+          console.error('Error fetching videos:', err);
+        }
       } finally {
-        setLoading(false); // Stop loading regardless of success/failure
+        if (isMounted) {
+          setLoading(false); // Stop loading regardless of success/failure
+        }
       }
     };
 
     fetchVods();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []); // Empty dependency array = run once on mount
 
   // Show loading spinner while fetching data

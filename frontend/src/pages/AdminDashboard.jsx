@@ -26,8 +26,50 @@ const AdminDashboard = () => {
 
   // Fetch players on component mount
   useEffect(() => {
-    fetchPlayers();
-  }, []);
+    let isMounted = true;
+    
+    const fetchPlayersOnMount = async () => {
+      try {
+        const response = await fetch('/api/admin/players', {
+          credentials: 'include', // Include cookies for auth
+        });
+
+        if (response.status === 401) {
+          // Not authenticated, redirect to login
+          if (isMounted) {
+            navigate('/admin-login');
+          }
+          return;
+        }
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Fetched players:', data); // Debug: see what we're getting
+          if (isMounted) {
+            setPlayers(data);
+          }
+        } else {
+          if (isMounted) {
+            setError('Failed to fetch players');
+          }
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError('Connection error');
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchPlayersOnMount();
+    
+    return () => {
+      isMounted = false;
+    };
+  }, [navigate]);
 
   const fetchPlayers = async () => {
     try {

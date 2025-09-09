@@ -8,6 +8,8 @@ export const Leaderboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const fetchLeaderboard = async () => {
       try {
         const response = await fetch('/api/leaderboard');
@@ -15,16 +17,26 @@ export const Leaderboard = () => {
           throw new Error('Failed to fetch leaderboard');
         }
         const data = await response.json();
-        setPlayers(data);
+        if (isMounted) {
+          setPlayers(data);
+        }
       } catch (err) {
-        setError(err.message);
-        console.error('Error fetching leaderboard:', err);
+        if (isMounted) {
+          setError(err.message);
+          console.error('Error fetching leaderboard:', err);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchLeaderboard();
+    
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Sort players by score descending
