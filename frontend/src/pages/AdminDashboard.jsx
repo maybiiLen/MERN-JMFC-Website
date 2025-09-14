@@ -548,7 +548,7 @@ const AdminDashboard = () => {
                     <td className="px-2 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-900 hidden lg:table-cell">{player.attributes?.defending || 50}</td>
                     <td className="px-2 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-900 hidden lg:table-cell">{player.attributes?.physical || 50}</td>
                     <td className="px-2 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
-                      {Math.round((player.baseValue || 0) + ((player.goals || 0) * 5) + ((player.assists || 0) * 2.5) + ((player.saves || 0) * 1))}
+                      {Math.round((player.baseValue || 0) + ((player.goals || 0) * 3) + ((player.assists || 0) * 1) + ((player.saves || 0) * 0.5))}
                     </td>
                     <td className="px-3 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium w-32">
                       <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">

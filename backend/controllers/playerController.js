@@ -10,7 +10,7 @@ export async function getLeaderboard(req, res) {
       const goals = p.goals || 0;
       const assists = p.assists || 0;
       const saves = p.saves || 0;
-      const score = base + (goals * 5) + (assists * 2.5) + (saves * 1);
+      const score = base + (goals * 3) + (assists * 1) + (saves * 0.5);
 
       return {
         _id: p._id,
@@ -45,7 +45,7 @@ export async function getPlayer(req, res) {
     const goals = p.goals || 0;
     const assists = p.assists || 0;
     const saves = p.saves || 0;
-    const score = base + (goals * 5) + (assists * 2.5) + (saves * 1);
+    const score = base + (goals * 3) + (assists * 1) + (saves * 0.5);
 
     res.json({ ...p, score });
   } catch (err) {
@@ -93,7 +93,7 @@ export async function updatePlayer(req, res) {
     const goals = player.goals || 0;
     const assists = player.assists || 0;
     const saves = player.saves || 0;
-    player.score = base + (goals * 5) + (assists * 2.5) + (saves * 1);
+    player.score = base + (goals * 3) + (assists * 1) + (saves * 0.5);
 
     res.json(player);
   }

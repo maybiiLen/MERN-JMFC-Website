@@ -22,8 +22,8 @@ const playerSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 playerSchema.virtual('score').get(function() {
-  // score formula (base + goals*5 + assists*2.5 + saves*1)
-  return (this.baseValue || 0) + ((this.goals || 0) * 5) + ((this.assists || 0) * 2.5) + ((this.saves || 0) * 1);
+  // score formula (base + goals*3 + assists*1 + saves*0.5)
+  return (this.baseValue || 0) + ((this.goals || 0) * 3) + ((this.assists || 0) * 1) + ((this.saves || 0) * 0.5);
 });
 
 playerSchema.set('toJSON', { virtuals: true, versionKey: false });
