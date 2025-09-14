@@ -120,7 +120,7 @@ export const Leaderboard = () => {
                                         {/* Assists */}
                                         <td className="font-semibold text-amber-600 pl-7">{player.assists || 0}</td>
                                         {/* Market Value (using virtual score field) */}
-                                        <td className="font-semibold pl-5">${Math.round(player.score || 0)}K</td>
+                                        <td className="font-semibold pl-5">${(player.score || 0).toFixed(2)}K</td>
                                     </tr>
                                 )) : (
                                     <tr>
