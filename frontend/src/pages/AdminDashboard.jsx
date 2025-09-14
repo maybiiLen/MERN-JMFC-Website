@@ -270,9 +270,10 @@ const AdminDashboard = () => {
                 />
                 <input
                   type="number"
+                  step="0.01"
                   placeholder="Base Value"
                   value={editingPlayer.baseValue}
-                  onChange={(e) => setEditingPlayer({...editingPlayer, baseValue: parseInt(e.target.value) || 0})}
+                  onChange={(e) => setEditingPlayer({...editingPlayer, baseValue: parseFloat(e.target.value) || 0})}
                   className="w-full border border-gray-300 rounded px-3 py-2"
                 />
                 <h4 className="text-md font-bold text-gray-900 mt-4 mb-2">Player Attributes</h4>
@@ -412,9 +413,10 @@ const AdminDashboard = () => {
             />
             <input
               type="number"
+              step="0.01"
               placeholder="Base Value"
               value={newPlayer.baseValue}
-              onChange={(e) => setNewPlayer({...newPlayer, baseValue: parseInt(e.target.value) || 0})}
+              onChange={(e) => setNewPlayer({...newPlayer, baseValue: parseFloat(e.target.value) || 0})}
               className="border border-gray-300 rounded px-3 py-2"
             />
             <div className="col-span-2">
@@ -506,22 +508,22 @@ const AdminDashboard = () => {
         {/* Players Table */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-max">
+            <table className="w-full min-w-[1200px]">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Goals</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assists</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Saves</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Base Value</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">PAC</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">SHO</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">PAS</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">DRI</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">DEF</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">PHY</th>
-                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
-                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-48">Name</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Goals</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Assists</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell w-20">Saves</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell w-24">Base Value</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell w-16">PAC</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell w-16">SHO</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell w-16">PAS</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell w-16">DRI</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell w-16">DEF</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell w-16">PHY</th>
+                  <th className="px-2 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Score</th>
+                  <th className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -548,19 +550,21 @@ const AdminDashboard = () => {
                     <td className="px-2 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-900">
                       {Math.round((player.baseValue || 0) + ((player.goals || 0) * 5) + ((player.assists || 0) * 2.5) + ((player.saves || 0) * 1))}
                     </td>
-                    <td className="px-3 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium">
-                      <button 
-                        onClick={() => handleEdit(player)}
-                        className="text-indigo-600 hover:text-indigo-900 mr-2 md:mr-4 text-xs md:text-sm"
-                      >
-                        Edit
-                      </button>
-                      <button 
-                        onClick={() => handleDelete(player._id)}
-                        className="text-red-600 hover:text-red-900 text-xs md:text-sm"
-                      >
-                        Delete
-                      </button>
+                    <td className="px-3 md:px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium w-32">
+                      <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
+                        <button 
+                          onClick={() => handleEdit(player)}
+                          className="text-indigo-600 hover:text-indigo-900 text-xs md:text-sm px-2 py-1 rounded border border-indigo-200 hover:bg-indigo-50"
+                        >
+                          Edit
+                        </button>
+                        <button 
+                          onClick={() => handleDelete(player._id)}
+                          className="text-red-600 hover:text-red-900 text-xs md:text-sm px-2 py-1 rounded border border-red-200 hover:bg-red-50"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
